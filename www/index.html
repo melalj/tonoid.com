@@ -1,380 +1,413 @@
+<!DOCTYPE HTML>
 <html>
-		
-		<head>
-			<script>
-			function signUpProduct(product) {
-				try {
-					var email;
-					if (email = prompt('You can get an early access to this product, just provide your email:')) {
-						var data = 'email=' + encodeURI(email) + '&product=' + product;
-						var xhr = new XMLHttpRequest();
-						xhr.open('POST', '/submit', true);
-						xhr.setRequestHeader('Accept', 'application/xml, text/xml, */*; q=0.01');
-						xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded; charset=UTF-8');
-						xhr.onreadystatechange = function() {
-							if(xhr.readyState === 4) {
-								if(xhr.status === 200) {
-									console.log(xhr.responseText)
-								}
+
+<head>
+	<title>Tonoid | The Barrel of Ideas</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta name="description" content="Barrel of ideas fueling products built from personal needs and life hacks by Mohammed Elalj"
+	/>
+	<meta name="apple-mobile-web-app-title" content="Tonoid" />
+	<meta property="og:site_name" content="Tonoid" />
+	<meta property="og:title" content="Tonoid, The Barrel of Ideas" />
+	<meta property="og:image" content="https://tonoid.com/images/card.png" />
+	<meta property="og:description" content="Barrel of ideas fueling products built from personal needs and life hacks by Mohammed Elalj"
+	/>
+	<meta property="og:url" content="https://tonoid.com" />
+	<meta property="og:type" content="article" />
+	<meta property="twitter:card" content="summary_large_image" />
+	<meta property="twitter:site" content="@simoelalj" />
+	<meta property="twitter:creator" content="@simoelalj" />
+
+	<link rel="canonical" href="https://tonoid.com" />
+
+	<script>
+		function signUpProduct(product) {
+			try {
+				var email;
+				if (email = prompt('You can get an early access to this product, just provide your email:')) {
+					var data = 'email=' + encodeURI(email) + '&product=' + product;
+					var xhr = new XMLHttpRequest();
+					xhr.open('POST', '/signUpEmail', true);
+					xhr.setRequestHeader('Accept', 'application/xml, text/xml, */*; q=0.01');
+					xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded; charset=UTF-8');
+					xhr.onreadystatechange = function () {
+						if (xhr.readyState === 4) {
+							if (xhr.status === 200) {
+								document.querySelector('[data-product="' + product + '"]').setAttribute('class', 'check');
 							}
-						};
-						xhr.send(data);
-					}
-				} catch(e) {
-					console.log(e);
+						}
+					};
+					xhr.send(data);
 				}
-				document.querySelector('[data-product="' + product + '"]').setAttribute('class', 'check');
-				return false;
+			} catch (e) {
+				console.log(e);
 			}
-			</script>
-			<style>
-				@font-face {
-					font-family: 'National';
-					src: url('./fonts/National-Book.ttf');
-					font-weight: normal;
-					font-style: normal;
-				}
-		
-		
-				@font-face {
-					font-family: 'National';
-					src: url('./fonts/National-Bold.ttf');
-					font-weight: bold;
-					font-style: normal;
-				}
-		
-				@font-face {
-					font-family: 'National';
-					src: url('./fonts/National-BookItalic.ttf');
-					font-weight: normal;
-					font-style: italic;
-				}
-		
-				@font-face {
-					font-family: 'National-Medium';
-					src: url('./fonts/National-Medium.ttf');
-					font-weight: normal;
-					font-style: normal;
-				}
-		
-				a {
-					color: #F5A623;
-					text-decoration: none;
-				}
-		
-				a:hover {
-					text-decoration: underline;
-				}
-		
-				body {
-					background-color: #F4F4F4;
-					font-family: 'National';
-					color: #676767;
-					font-weight: normal;
-					font-style: normal;
-				}
-		
-				img.rounded {
-					border-radius: 100%;
-				}
-		
-				.container {
-					background: #FFFFFF;
-					border: 1px solid #D9E3ED;
-					box-shadow: 0 3px 25px 0 rgba(0, 0, 0, 0.08);
-					border-radius: 3px;
-					padding: 20px;
-					margin: 10px auto;
-				}
-		
-				@media (min-width: 768px) {
-					.container {
-						width: 750px;
-						margin: 20px auto;
-						padding: 60px;
-					}
-				}
-		
-				header h1 {
-					font-weight: bold;
-					font-size: 34px;
-					color: #4A90E2;
-					padding: 0;
-					margin: 0;
-				}
-		
-				header h2 {
-					font-style: italic;
-					font-size: 18px;
-					padding: 0;
-					margin: 0;
-					font-weight: normal;
-				}
-		
-				main {
-					margin-top: 60px;
-				}
-		
-				section {
-					margin-top: 60px;
-				}
-		
-				section h2 {
-					text-align: center;
-					font-size: 24px;
-					font-weight: normal;
-				}
-		
-				.card {
-					background: #FFFFFF;
-					border: 1px solid #D9E3ED;
-					border-radius: 1px;
-				}
-		
-				.card .top {
-					display: flex;
-					align-items: stretch;
-				}
-		
-				.card .top .left {
-					min-width: 100px;
-					max-width: 100px;
-					display: flex;
-					align-items: center;
-					justify-content: center;
-				}
-		
-				.card .top .right {
-					padding: 15px 15px 15px 0;
-					flex-grow: 1;
-				}
-		
-				.card .bottom {
-					display: flex;
-					align-items: center;
-					justify-content: space-between;
-					color: #9B9B9B;
-				}
-		
-				.card .bottom .left {
-					padding: 15px;
-				}
-		
-				.card .bottom .right {
-					padding: 15px;
-					text-align: right;
-				}
-		
-				.card .bottom .right span {
-					color: #676767;
-				}
+			return false;
+		}
+	</script>
 
-				ul {
-					padding: 0;
-				}
+	<style>
+		@font-face {
+			font-family: 'National';
+			src: url('./fonts/National-Book.ttf');
+			font-weight: normal;
+			font-style: normal;
+		}
 
-				ul a {
-					color: inherit;
-				}
 
-				ul a:hover {
-					text-decoration: none;
-				}
-		
-				ul li {
-					background: #FFFFFF;
-					border: 1px solid #D9E3ED;
-					border-radius: 3px;
-					min-height: 78px;
-					list-style: none;
-					display: flex;
-					align-items: stretch;
-					cursor: pointer;
-					transition: 300ms box-shadow, 300ms transform;
-					margin-bottom: 10px;
-				}
-		
-				ul li:hover {
-					box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.06);
-					transform: scale(1.01);
-				}
-		
-				ul li .left {
-					min-width: 78px;
-					max-width: 78px;
-					border-top-left-radius: 3px;
-					border-bottom-left-radius: 3px;
-					background-color: #E0E7EB;
-					display: flex;
-					align-items: center;
-					justify-content: center;
-				}
-		
-				ul li.card .left {
-					background-color: transparent;
-					min-width: 100px;
-					max-width: 100px;
-				}
-		
-				ul li .middle {
-					padding: 15px;
-					flex-grow: 1;
-				}
-		
-				ul li .right {
-					display: flex;
-					align-items: center;
-					justify-content: center;
-					width: 60px;
-					min-width: 50px;
-					transition: 300ms width;
-				}
-		
-				ul li h3, .card h3 {
-					font-family: 'National-Medium';
-					font-size: 18px;
-					font-weight: normal;
-					padding: 0;
-					margin: 0;
-				}
-		
-				ul li p, .card p {
-					color: #9B9B9B;
-					font-size: 16px;
-					padding: 0;
-					margin: 0;
-				}
-		
-				.arrow {
-					width: 18px;
-					height: 18px;
-					background: transparent url('./images/arrow.svg');
-				}
+		@font-face {
+			font-family: 'National';
+			src: url('./fonts/National-Bold.ttf');
+			font-weight: bold;
+			font-style: normal;
+		}
 
-				.check {
-					width: 14px;
-					height: 12px;
-					background: transparent url('./images/check.svg');
-				}
-			</style>
-		</head>
-		
-		<body>
-			<div class='container'>
-				<header>
-					<h1>to•no•id</h1>
-					<h2>(təˈnō-ide) Barrel of ideas fueling products built from personal needs and life hacks.</h2>
-				</header>
-				<main>
-					<section>
-						<h2>🚀 Shipped Products</h2>
-						<ul>
-							<a href="https://www.refurb.me/?utm_source=dns&utm_medium=dns&utm_campaign=tonoid.com" target="_blank">
-								<li>
-									<div class="left" style="background-color: #6ACBD4">
-										<img src="./images/refurbme.png" width="40px" height="40px" />
-									</div>
-									<div class="middle">
-										<h3>RefurbMe</h3>
-										<p>Shop quality Apple refurbised products at great prices from certified refurbishers</p>
-									</div>
-									<div class="right"><div class="arrow"></div></div>
-								</li>
-							</a>
+		@font-face {
+			font-family: 'National';
+			src: url('./fonts/National-BookItalic.ttf');
+			font-weight: normal;
+			font-style: italic;
+		}
 
-							<a href="#" target="_blank">
-								<li>
-									<div class="left">
-										<img src="./images/dmv.png" width="36px" height="37px" />
-									</div>
-									<div class="middle">
-										<h3>DMV Appointement Checker</h3>
-										<p>Monitor latest appointement availabilities for the Californian Department of Motor Vehicule</p>
-									</div>
-									<div class="right"><div class="arrow"></div></div>
-								</li>
-							</a>
-						</ul>
-					</section>
-		
-					<section>
-							<h2>🏗 Work In Progress</h2>
-							<ul>
-								<a href="javascript:signUpProduct('take-a-guess');" target="_blank">
-									<li>
-										<div class="left" style="background-color: #9013FE">
-											<img src="./images/takeaguess.png" width="40px" height="41px" />
-										</div>
-										<div class="middle">
-											<h3>Take a guess</h3>
-											<p>Trivia game about curious and fun questions.</p>
-										</div>
-										<div class="right"><div data-product="take-a-guess" class="arrow"></div></div>
-									</li>
-								</a>
-	
-								<a href="javascript:signUpProduct('the-newsletter-archive');" target="_blank">
-									<li>
-										<div class="left">
-											<img src="./images/the-newsletter-archive.png" width="62px" height="28px" />
-										</div>
-										<div class="middle">
-											<h3>The Newsletter Archive</h3>
-											<p>Browse thousands of newsletters available in the market</p>
-										</div>
-										<div class="right"><div data-product="the-newsletter-archive" class="arrow"></div></div>
-									</li>
-								</a>
+		@font-face {
+			font-family: 'National-Medium';
+			src: url('./fonts/National-Medium.ttf');
+			font-weight: normal;
+			font-style: normal;
+		}
 
-								<a href="javascript:signUpProduct('you-goat-me');" target="_blank">
-										<li>
-											<div class="left">
-												<img src="./images/yougoatme.png" width="28px" height="21px" />
-											</div>
-											<div class="middle">
-												<h3>You Goat Me</h3>
-												<p>Goat something in mind?</p>
-											</div>
-											<div class="right"><div data-product="you-goat-me" class="arrow"></div></div>
-										</li>
-									</a>
-							</ul>
-						</section>
+		a {
+			color: #F5A623;
+			text-decoration: none;
+		}
 
-					<section>
-						<h2>👷 About</h2>
-						<div class="card">
-							<div class="top">
-								<div class="left">
-									<img class="rounded" src="https://secure.gravatar.com/avatar/baa4fdc9d4b4b257d1361ef225d2e369?s=128" width="64px" height="64px" />
-								</div>
-								<div class="right">
-									<h3>Mohammed Elalj</h3>
-									<p>
-										Serial builder since the age of 13. Digital nomad and bass amateur.
-										<br /> A focus on neat UX and great deals. As well as anythings that delights: travel, mint tea...
-									</p>
-								</div>
+		a:hover {
+			text-decoration: underline;
+		}
+
+		body {
+			background-color: #F4F4F4;
+			font-family: 'National';
+			color: #676767;
+			font-weight: normal;
+			font-style: normal;
+		}
+
+		img.rounded {
+			border-radius: 100%;
+		}
+
+		.container {
+			background: #FFFFFF;
+			border: 1px solid #D9E3ED;
+			box-shadow: 0 3px 25px 0 rgba(0, 0, 0, 0.08);
+			border-radius: 3px;
+			padding: 20px;
+			margin: 10px auto;
+		}
+
+		@media (min-width: 768px) {
+			.container {
+				width: 750px;
+				margin: 20px auto;
+				padding: 60px;
+			}
+		}
+
+		header h1 {
+			font-weight: bold;
+			font-size: 34px;
+			color: #4A90E2;
+			padding: 0;
+			margin: 0;
+		}
+
+		header h2 {
+			font-style: italic;
+			font-size: 18px;
+			padding: 0;
+			margin: 0;
+			font-weight: normal;
+		}
+
+		main {
+			margin-top: 60px;
+		}
+
+		section {
+			margin-top: 60px;
+		}
+
+		section h2 {
+			text-align: center;
+			font-size: 24px;
+			font-weight: normal;
+		}
+
+		.card {
+			background: #FFFFFF;
+			border: 1px solid #D9E3ED;
+			border-radius: 1px;
+		}
+
+		.card .top {
+			display: flex;
+			align-items: stretch;
+		}
+
+		.card .top .left {
+			min-width: 100px;
+			max-width: 100px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.card .top .right {
+			padding: 15px 15px 15px 0;
+			flex-grow: 1;
+		}
+
+		.card .bottom {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			color: #9B9B9B;
+		}
+
+		.card .bottom .left {
+			padding: 15px;
+		}
+
+		.card .bottom .right {
+			padding: 15px;
+			text-align: right;
+		}
+
+		.card .bottom .right span {
+			color: #676767;
+		}
+
+		ul {
+			padding: 0;
+		}
+
+		ul a {
+			color: inherit;
+		}
+
+		ul a:hover {
+			text-decoration: none;
+		}
+
+		ul li {
+			background: #FFFFFF;
+			border: 1px solid #D9E3ED;
+			border-radius: 3px;
+			min-height: 78px;
+			list-style: none;
+			display: flex;
+			align-items: stretch;
+			cursor: pointer;
+			transition: 300ms box-shadow, 300ms transform;
+			margin-bottom: 10px;
+		}
+
+		ul li:hover {
+			box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.06);
+			transform: scale(1.01);
+		}
+
+		ul li .left {
+			min-width: 78px;
+			max-width: 78px;
+			border-top-left-radius: 3px;
+			border-bottom-left-radius: 3px;
+			background-color: #E0E7EB;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		ul li.card .left {
+			background-color: transparent;
+			min-width: 100px;
+			max-width: 100px;
+		}
+
+		ul li .middle {
+			padding: 15px;
+			flex-grow: 1;
+		}
+
+		ul li .right {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			width: 60px;
+			min-width: 50px;
+			transition: 300ms width;
+		}
+
+		ul li h3,
+		.card h3 {
+			font-family: 'National-Medium';
+			font-size: 18px;
+			font-weight: normal;
+			padding: 0;
+			margin: 0;
+		}
+
+		ul li p,
+		.card p {
+			color: #9B9B9B;
+			font-size: 16px;
+			padding: 0;
+			margin: 0;
+		}
+
+		.arrow {
+			width: 18px;
+			height: 18px;
+			background: transparent url('./images/arrow.svg');
+		}
+
+		.check {
+			width: 14px;
+			height: 12px;
+			background: transparent url('./images/check.svg');
+		}
+	</style>
+</head>
+
+<body>
+	<div class='container'>
+		<header>
+			<h1>to•no•id</h1>
+			<h2>(təˈnō-ide) Barrel of ideas fueling products built from personal needs and life hacks.</h2>
+		</header>
+		<main>
+			<section>
+				<h2>🚀 Shipped Products</h2>
+				<ul>
+					<a href="https://www.refurb.me/?utm_source=dns&utm_medium=dns&utm_campaign=tonoid.com" target="_blank">
+						<li>
+							<div class="left" style="background-color: #6ACBD4">
+								<img src="./images/refurbme.png" width="40px" height="40px" />
 							</div>
-							<div class="bottom">
-								<div class="left">
-									Can be reached via:
-									<br/>
-									<a href="mailto:hi@tonoid.com">hi@tonoid.com</a>,
-									<a href="mailto:hi@tonoid.com">Coffee</a>,
-									<a href="https://www.linkedin.com/in/elalj/">LinkedIn</a>,
-									<a href="https://www.twitter.com/simoelalj/">Twitter</a>,
-									<a href="https://www.instagram.com/simoelalj/">Instagram</a>
-								</div>
-								<div class="right">
-									Current location:
-									<span>San Francisco, CA 🇺🇸 </span>
-								</div>
+							<div class="middle">
+								<h3>RefurbMe</h3>
+								<p>Shop quality Apple refurbised products at great prices from certified refurbishers</p>
 							</div>
+							<div class="right">
+								<div class="arrow"></div>
+							</div>
+						</li>
+					</a>
+
+					<a href="#" target="_blank">
+						<li>
+							<div class="left">
+								<img src="./images/dmv.png" width="36px" height="37px" />
+							</div>
+							<div class="middle">
+								<h3>DMV Appointement Checker</h3>
+								<p>Monitor latest appointement availabilities for the Californian Department of Motor Vehicule</p>
+							</div>
+							<div class="right">
+								<div class="arrow"></div>
+							</div>
+						</li>
+					</a>
+				</ul>
+			</section>
+
+			<section>
+				<h2>🏗 Work In Progress</h2>
+				<ul>
+					<a href="javascript:signUpProduct('take-a-guess');" target="_blank">
+						<li>
+							<div class="left" style="background-color: #9013FE">
+								<img src="./images/takeaguess.png" width="40px" height="41px" />
+							</div>
+							<div class="middle">
+								<h3>Take a guess</h3>
+								<p>Trivia game about curious and fun questions.</p>
+							</div>
+							<div class="right">
+								<div data-product="take-a-guess" class="arrow"></div>
+							</div>
+						</li>
+					</a>
+
+					<a href="javascript:signUpProduct('the-newsletter-archive');" target="_blank">
+						<li>
+							<div class="left">
+								<img src="./images/the-newsletter-archive.png" width="62px" height="28px" />
+							</div>
+							<div class="middle">
+								<h3>The Newsletter Archive</h3>
+								<p>Browse thousands of newsletters available in the market</p>
+							</div>
+							<div class="right">
+								<div data-product="the-newsletter-archive" class="arrow"></div>
+							</div>
+						</li>
+					</a>
+
+					<a href="javascript:signUpProduct('you-goat-me');" target="_blank">
+						<li>
+							<div class="left">
+								<img src="./images/yougoatme.png" width="28px" height="21px" />
+							</div>
+							<div class="middle">
+								<h3>You Goat Me</h3>
+								<p>Goat something in mind?</p>
+							</div>
+							<div class="right">
+								<div data-product="you-goat-me" class="arrow"></div>
+							</div>
+						</li>
+					</a>
+				</ul>
+			</section>
+
+			<section>
+				<h2>👷 About</h2>
+				<div class="card">
+					<div class="top">
+						<div class="left">
+							<img class="rounded" src="https://secure.gravatar.com/avatar/baa4fdc9d4b4b257d1361ef225d2e369?s=128" width="64px" height="64px"
+							/>
 						</div>
-					</section>
-				</main>
-			</div>
-		</body>
-		
-		</html>
+						<div class="right">
+							<h3>Mohammed Elalj</h3>
+							<p>
+								Serial builder since the age of 13. Digital nomad and bass amateur.
+								<br /> A focus on neat UX and great deals. As well as anythings that delights: travel, mint tea...
+							</p>
+						</div>
+					</div>
+					<div class="bottom">
+						<div class="left">
+							Can be reached via:
+							<br/>
+							<a href="mailto:hi@tonoid.com">hi@tonoid.com</a>,
+							<a href="mailto:hi@tonoid.com">Coffee</a>,
+							<a href="https://www.linkedin.com/in/elalj/">LinkedIn</a>,
+							<a href="https://www.twitter.com/simoelalj/">Twitter</a>,
+							<a href="https://www.instagram.com/simoelalj/">Instagram</a>
+						</div>
+						<div class="right">
+							Current location:
+							<span>San Francisco, CA 🇺🇸 </span>
+						</div>
+					</div>
+				</div>
+			</section>
+		</main>
+	</div>
+</body>
+
+</html>
