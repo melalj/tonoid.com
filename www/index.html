@@ -26,26 +26,26 @@
 			try {
 				var email;
 				if (email = prompt('You can get an early access to this product.\nJust provide your email and I\'ll let you know when a beta opens 😉')) {
-					var comment = prompt('I\'d love to know more why you are interested ☺️\nAny suggestion or comment to share?');
-					var data = 'email=' + encodeURIComponent(email) + '&comment=' + encodeURIComponent(comment) + '&product=' + product;
-					var xhr = new XMLHttpRequest();
-					xhr.open('POST', '/signUpEmail', true);
-					xhr.setRequestHeader('Accept', 'application/xml, text/xml, */*; q=0.01');
-					xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded; charset=UTF-8');
-					xhr.onreadystatechange = function () {
-						if (xhr.readyState === 4) {
-							if (xhr.status === 200) {
-								document.querySelector('[data-product="' + product + '"]').setAttribute('class', 'check');
-								alert('Your interest has been recorded. Stay tuned 👍🏻');
+					if (comment = prompt('I\'d love to know more why you are interested ☺️\nAny suggestion or comment to share?')) {
+						var data = 'email=' + encodeURIComponent(email) + '&comment=' + encodeURIComponent(comment) + '&product=' + product;
+						var xhr = new XMLHttpRequest();
+						xhr.open('POST', '/signUpEmail', true);
+						xhr.setRequestHeader('Accept', 'application/xml, text/xml, */*; q=0.01');
+						xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded; charset=UTF-8');
+						xhr.onreadystatechange = function () {
+							if (xhr.readyState === 4) {
+								if (xhr.status === 200) {
+									document.querySelector('[data-product="' + product + '"]').setAttribute('class', 'check');
+									alert('Your interest has been recorded. Stay tuned 👍🏻');
+								}
 							}
-						}
-					};
-					xhr.send(data);
+						};
+						xhr.send(data);
+					}
 				}
 			} catch (e) {
 				console.log(e);
 			}
-			return false;
 		}
 	</script>
 
@@ -90,7 +90,7 @@
 
 		body {
 			background-color: #F4F4F4;
-			font-family: 'National', sans-serif;
+			font-family: 'National', Helvetica, Arial, sans-serif;
 			color: #676767;
 			font-weight: normal;
 			font-style: normal;
