@@ -5,13 +5,13 @@
 	<title>Tonoid | The Barrel of Ideas</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<meta name="description" content="Barrel of ideas fueling products built from personal needs and life hacks by Mohammed Elalj"
+	<meta name="description" content="Barrel of ideas fueling products built from personal needs and life hacks by Simo Elalj"
 	/>
 	<meta name="apple-mobile-web-app-title" content="Tonoid" />
 	<meta property="og:site_name" content="Tonoid" />
 	<meta property="og:title" content="Tonoid, The Barrel of Ideas" />
 	<meta property="og:image" content="https://tonoid.com/images/card.png" />
-	<meta property="og:description" content="Barrel of ideas fueling products built from personal needs and life hacks by Mohammed Elalj"
+	<meta property="og:description" content="Barrel of ideas fueling products built from personal needs and life hacks by Simo Elalj"
 	/>
 	<meta property="og:url" content="https://tonoid.com" />
 	<meta property="og:type" content="article" />
@@ -20,34 +20,6 @@
 	<meta property="twitter:creator" content="@simoelalj" />
 
 	<link rel="canonical" href="https://tonoid.com" />
-
-	<script>
-		function signUpProduct(product) {
-			try {
-				var email;
-				if (email = prompt('You can get an early access to this product.\nJust provide your email and I\'ll let you know when a beta opens 😉')) {
-					if (comment = prompt('I\'d love to know more why you are interested ☺️\nAny suggestion or comment to share?')) {
-						var data = 'email=' + encodeURIComponent(email) + '&comment=' + encodeURIComponent(comment) + '&product=' + product;
-						var xhr = new XMLHttpRequest();
-						xhr.open('POST', '/signUpEmail', true);
-						xhr.setRequestHeader('Accept', 'application/xml, text/xml, */*; q=0.01');
-						xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded; charset=UTF-8');
-						xhr.onreadystatechange = function () {
-							if (xhr.readyState === 4) {
-								if (xhr.status === 200) {
-									document.querySelector('[data-product="' + product + '"]').setAttribute('class', 'check');
-									alert('Your interest has been recorded. Stay tuned 👍🏻');
-								}
-							}
-						};
-						xhr.send(data);
-					}
-				}
-			} catch (e) {
-				console.log(e);
-			}
-		}
-	</script>
 
 	<style>
 		@font-face {
@@ -310,10 +282,10 @@
 									/>
 								</div>
 								<div class="right">
-									<h3>Mohammed Elalj</h3>
+									<h3>Simo Elalj</h3>
 									<p>
 										Serial builder since the age of 13. Digital nomad and bass amateur.
-										<br /> A focus on neat UX and great deals. As well as anythings that delights: travel, mint tea...
+										<br /> A focus on neat UX and great deals. As well as anythings that delights: travel, goats, mint tea...
 									</p>
 								</div>
 							</div>
@@ -329,7 +301,7 @@
 								</div>
 								<div class="right">
 									Current location:
-									<span>San Francisco, CA 🇺🇸 </span>
+									<span>Bali, Indonesia 🇮🇩 </span>
 								</div>
 							</div>
 						</div>
@@ -359,7 +331,7 @@
 							</div>
 							<div class="middle">
 								<h3>You Goat Me</h3>
-								<p>Get a goat toy, help a child. With every purchase, we provide 3 days of boarding school for a girl in Morocco</p>
+								<p>We help girls in rural Morocco get the education they deserve. With every purchase, we provide them with 3 days of education and housing.</p>
 							</div>
 							<div class="right">
 								<div data-product="you-goat-me" class="arrow"></div>
@@ -433,13 +405,13 @@
 			<section>
 				<h2>🏗 Work In Progress</h2>
 				<ul>
-					<a href="javascript:signUpProduct('nonstop-flights');">
+					<a href="https://direct-flights.com/?utm_source=dns&utm_medium=dns&utm_campaign=tonoid.com" target="_blank">
 						<li>
 							<div class="left" style="background-color: #FCFCFC">
 								<img src="./images/nonstop-flights.png" width="33px" height="35px" />
 							</div>
 							<div class="middle">
-								<h3>NonStop Flights</h3>
+								<h3>Direct Flights</h3>
 								<p>Worldwide non-stop commercial flight routes with crispy stats and facts</p>
 							</div>
 							<div class="right">
@@ -447,7 +419,7 @@
 							</div>
 						</li>
 					</a>
-					<a href="javascript:signUpProduct('the-newsletter-archive');">
+					<a href="javascript:alert('Reach out for more details: hi@tonoid.com');">
 						<li>
 							<div class="left">
 								<img src="./images/the-newsletter-archive.png" width="62px" height="28px" />
