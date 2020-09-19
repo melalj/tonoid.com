@@ -1,0 +1,7 @@
+ {
+  "schemaVersion": 2,
+  "dockerfileLines": [
+    "socialengine/nginx-spa",
+    "COPY . /usr/share/nginx/html"
+  ]
+}
